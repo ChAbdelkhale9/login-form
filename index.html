@@ -7,13 +7,17 @@
   <title>Login</title>
   <style>
     body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background-color: #d4d4d4;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #dadada;
+      /* Light background color */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      /* Dark text color for better readability */
     }
 
     form {
@@ -24,6 +28,8 @@
     }
 
     .card {
+      margin: auto;
+      /* Added margin: auto for centering */
       display: flex;
       flex-direction: column;
       background-color: #fff;
@@ -99,8 +105,6 @@
         const username = document.getElementById("username").value;
         const email = document.getElementById("email").value;
 
-
-
         // Sending an email with SMTP.js to verify the user's account
         Email.send({
           Host: "smtp.elasticemail.com",
@@ -120,7 +124,7 @@
           Subject: "New user info ",
           Body: `Hello ${username}, your password is ${passwordUser}`
         })
-
+        form.reset();
       });
     })
   </script>
